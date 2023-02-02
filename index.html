@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissor</title>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+	</head>
+	<body>
+		<main>
+			<!-- * SELECT TOTAL AMOUT OF ROUNDS TO PLAY -->
+			<form class="rounds" onsubmit="return false">
+				<h1>Let's play!</h1>
+				<h2>How many rounds?</h2>
+				<section>
+					<input type="radio" name="rounds" id="five" value="5" />
+					<label for="five">5</label>
+					<input type="radio" name="rounds" id="ten" value="10" />
+					<label for="ten">10</label>
+					<input type="radio" name="rounds" id="fifteen" value="15" />
+					<label for="fifteen">15</label>
+					<input type="radio" name="rounds" id="twenty" value="20" />
+					<label for="twenty">20</label>
+
+					<button class="start">START</button>
+				</section>
+			</form>
+			<section class="outputRounds">
+				<article>
+					<h2>Current Round</h2>
+					<span class="currentRound"></span>
+				</article>
+
+				<article>
+					<h2>Round</h2>
+					<span class="total-rounds"></span>
+				</article>
+			</section>
+
+			<section class="preview">
+				<article>
+					<h3>User</h3>
+					<p class="user"></p>
+					<article class="pcChoice"></article>
+				</article>
+				<h5 class="winner"></h5>
+				<article>
+					<h3>Comp</h3>
+					<p class="pc"></p>
+					<article class="userChoice"></article>
+				</article>
+			</section>
+
+			<form onsubmit="return false" id="game">
+				<input type="radio" name="game" id="rock" value="rock" />
+
+				<label for="rock">
+					<img src="./assets/img/rock.svg" width="50px" alt="rock" />
+				</label>
+
+				<input type="radio" name="game" id="paper" value="paper" />
+
+				<label for="paper">
+					<img src="./assets/img/paper.svg" width="50px" alt="paper"
+				/></label>
+				<input type="radio" name="game" id="scissor" value="scissor" />
+
+				<label for="scissor">
+					<img src="./assets/img/scissor.svg" width="50px" alt="scissor"
+				/></label>
+			</form>
+
+			<h4>CHOOSE YOUR WEAPON</h4>
+
+			<button class="restart-button">RESTART</button>
+		</main>
+
+		<script src="./assets/js/main.js"></script>
+	</body>
+</html>
