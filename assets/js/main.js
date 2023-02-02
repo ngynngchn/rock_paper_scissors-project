@@ -1,5 +1,4 @@
 //* ====== VARIABLES ======
-
 //*start page
 const intro = document.querySelector(".rounds");
 
@@ -13,7 +12,6 @@ const twenty = document.getElementById("twenty");
 let roundSelection = [five, ten, fifteen, twenty];
 
 //* output rounds
-
 const outputRounds = document.querySelector(".totalRounds");
 const currentRound = document.querySelector(".currentRound");
 
@@ -44,7 +42,7 @@ const start = document.querySelector(".start");
 //* restart button
 const restart = document.querySelector(".restart");
 
-//* AT THE END OF THE GAME SHOW RESULT
+//* show a pop with result
 const popUp = document.querySelector(".popUp");
 const playAgain = document.querySelector(".popUp button");
 const playAgainText = document.querySelector(".popUp h2");
@@ -55,23 +53,25 @@ let totalRounds;
 
 let pcScore = 0;
 let userScore = 0;
+
 //* ====== FUNCTIONS ======
 
-//* STARTING THE GAME
+//* starting the game
 start.addEventListener("click", chooseRounds);
 
-//* RESTART THE GAME
+//* restart the game
 restart.addEventListener("click", () => {
 	intro.classList.remove("hidden");
 	location.reload();
 });
 
-//* PLAY AGAIN
+//* play again
 playAgain.addEventListener("click", () => {
 	popUp.classList.add("hidden");
 	location.reload();
 });
 
+//* choosing amount of rounds
 function chooseRounds() {
 	roundSelection.forEach((e) => {
 		if (e.checked) {
@@ -82,18 +82,7 @@ function chooseRounds() {
 	});
 }
 
-function pcChoose() {
-	pcChoice = Math.random();
-	if (pcChoice < 0.34) {
-		pcChoice = "rock";
-	} else if (pcChoice < 0.67) {
-		pcChoice = "paper";
-	} else {
-		pcChoice = "scissor";
-	}
-	pcChoiceOutput.innerHTML = `<img src="./assets/img/${pcChoice}.svg" width="100px" alt="rock" />`;
-}
-
+//*
 userChoices.map((choice) => {
 	choice.addEventListener("click", function () {
 		currentRound.innerHTML = rounds;
@@ -116,6 +105,7 @@ userChoices.map((choice) => {
 	});
 });
 
+//* compare user choice with pc choice
 function play() {
 	pcChoose();
 	if (rock.checked) {
@@ -126,8 +116,8 @@ function play() {
 			pc.innerHTML;
 		} else if (pcChoice === "scissor") {
 			message.innerHTML = " YOU WIN";
-			message.classList.add("won");
 			message.classList.remove("tie");
+			message.classList.add("won");
 			userScore++;
 		} else {
 			message.innerHTML = "DRAW";
@@ -136,8 +126,8 @@ function play() {
 	} else if (paper.checked) {
 		if (pcChoice === "rock") {
 			message.innerHTML = "YOU WIN";
-			message.classList.add("won");
 			message.classList.remove("tie");
+			message.classList.add("won");
 			userScore++;
 		} else if (pcChoice === "scissor") {
 			message.innerHTML = "YOU LOSE";
@@ -151,6 +141,7 @@ function play() {
 		if (pcChoice === "paper") {
 			message.innerHTML = "YOU WIN";
 			message.classList.add("won");
+			message.classList.remove("tie");
 			userScore++;
 		} else if (pcChoice === "rock") {
 			message.innerHTML = "YOU LOSE";
@@ -163,4 +154,16 @@ function play() {
 	}
 	pc.innerHTML = pcScore;
 	user.innerHTML = userScore;
+}
+//* random pc choice
+function pcChoose() {
+	pcChoice = Math.random();
+	if (pcChoice < 0.34) {
+		pcChoice = "rock";
+	} else if (pcChoice < 0.67) {
+		pcChoice = "paper";
+	} else {
+		pcChoice = "scissor";
+	}
+	pcChoiceOutput.innerHTML = `<img src="./assets/img/${pcChoice}.svg" width="100px" alt="rock" />`;
 }

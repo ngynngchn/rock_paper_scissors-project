@@ -14,7 +14,7 @@
 				<h1>Let's play!</h1>
 				<h2>How many rounds?</h2>
 				<section>
-					<input type="radio" name="rounds" id="five" value="5" />
+					<input type="radio" name="rounds" id="five" value="5" checked />
 					<label for="five">5</label>
 					<input type="radio" name="rounds" id="ten" value="10" />
 					<label for="ten">10</label>
@@ -30,8 +30,8 @@
 				<h2>YOU LOST!</h2>
 				<button>PLAY AGAIN?</button>
 			</section>
-
 			<main>
+				<!-- * ROUNDS -->
 				<section class="outputRounds">
 					<article>
 						<h2>Current Round</h2>
@@ -42,7 +42,7 @@
 						<p class="totalRounds"></p>
 					</article>
 				</section>
-
+				<!-- * SCORES WITH PREVIEW OF WEAPON CHOICE-->
 				<section class="preview">
 					<article>
 						<h3>YOU</h3>
@@ -58,7 +58,7 @@
 						<article class="pcChoice"></article>
 					</article>
 				</section>
-
+				<!-- * WEAPON CHOICES -->
 				<h4>CHOOSE YOUR WEAPON</h4>
 				<form onsubmit="return false" id="weapons">
 					<input type="radio" name="game" id="rock" value="rock" />
@@ -79,6 +79,7 @@
 				</form>
 				<button class="restart">RESTART</button>
 			</main>
+
 			<footer>
 				<a
 					class="credits"
