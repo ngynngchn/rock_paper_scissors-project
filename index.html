@@ -8,8 +8,8 @@
 		<link rel="stylesheet" href="./assets/css/style.css" />
 	</head>
 	<body>
-		<main>
-			<!-- * SELECT TOTAL AMOUT OF ROUNDS TO PLAY -->
+		<!-- * STARTING PAGE: SELECT TOTAL AMOUT OF ROUNDS TO PLAY -->
+		<div class="container">
 			<form class="rounds" onsubmit="return false">
 				<h1>Let's play!</h1>
 				<h2>How many rounds?</h2>
@@ -22,59 +22,71 @@
 					<label for="fifteen">15</label>
 					<input type="radio" name="rounds" id="twenty" value="20" />
 					<label for="twenty">20</label>
-
 					<button class="start">START</button>
 				</section>
 			</form>
-			<section class="outputRounds">
-				<article>
-					<h2>Current Round</h2>
-					<span class="currentRound"></span>
-				</article>
-
-				<article>
-					<h2>Round</h2>
-					<span class="total-rounds"></span>
-				</article>
+			<!-- * POP UP AFTER GAME HAS FINISHED -->
+			<section class="popUp hidden">
+				<h2>YOU LOST!</h2>
+				<button>PLAY AGAIN?</button>
 			</section>
 
-			<section class="preview">
-				<article>
-					<h3>User</h3>
-					<p class="user"></p>
-					<article class="pcChoice"></article>
-				</article>
-				<h5 class="winner"></h5>
-				<article>
-					<h3>Comp</h3>
-					<p class="pc"></p>
-					<article class="userChoice"></article>
-				</article>
-			</section>
+			<main>
+				<section class="outputRounds">
+					<article>
+						<h2>Current Round</h2>
+						<p class="currentRound">0</p>
+					</article>
+					<article>
+						<h2>Total Rounds</h2>
+						<p class="totalRounds"></p>
+					</article>
+				</section>
 
-			<form onsubmit="return false" id="game">
-				<input type="radio" name="game" id="rock" value="rock" />
+				<section class="preview">
+					<article>
+						<h3>YOU</h3>
+						<p class="user">0</p>
+						<article class="userChoice"></article>
+					</article>
 
-				<label for="rock">
-					<img src="./assets/img/rock.svg" width="50px" alt="rock" />
-				</label>
+					<h5 class="winner"></h5>
 
-				<input type="radio" name="game" id="paper" value="paper" />
+					<article>
+						<h3>COMP</h3>
+						<p class="pc">0</p>
+						<article class="pcChoice"></article>
+					</article>
+				</section>
 
-				<label for="paper">
-					<img src="./assets/img/paper.svg" width="50px" alt="paper"
-				/></label>
-				<input type="radio" name="game" id="scissor" value="scissor" />
+				<h4>CHOOSE YOUR WEAPON</h4>
+				<form onsubmit="return false" id="weapons">
+					<input type="radio" name="game" id="rock" value="rock" />
 
-				<label for="scissor">
-					<img src="./assets/img/scissor.svg" width="50px" alt="scissor"
-				/></label>
-			</form>
+					<label for="rock">
+						<img src="./assets/img/rock.svg" width="50px" alt="rock" />
+					</label>
 
-			<h4>CHOOSE YOUR WEAPON</h4>
+					<input type="radio" name="game" id="paper" value="paper" />
 
-			<button class="restart-button">RESTART</button>
-		</main>
+					<label for="paper">
+						<img src="./assets/img/paper.svg" width="50px" alt="paper"
+					/></label>
+					<input type="radio" name="game" id="scissor" value="scissor" />
+					<label for="scissor">
+						<img src="./assets/img/scissor.svg" width="50px" alt="scissor"
+					/></label>
+				</form>
+				<button class="restart">RESTART</button>
+			</main>
+			<footer>
+				<a
+					class="credits"
+					href="https://www.vecteezy.com/free-vector/rock-paper-scissors"
+					>Rock Paper Scissors Vectors by Vecteezy</a
+				>
+			</footer>
+		</div>
 
 		<script src="./assets/js/main.js"></script>
 	</body>

@@ -13,8 +13,8 @@ const twenty = document.getElementById("twenty");
 let roundSelection = [five, ten, fifteen, twenty];
 
 //* output rounds
-// const outputRounds = document.querySelector(".outputRounds");
-const outputRounds = document.querySelector(".total-rounds");
+
+const outputRounds = document.querySelector(".totalRounds");
 const currentRound = document.querySelector(".currentRound");
 
 //* output of wins for each player
@@ -34,15 +34,20 @@ const message = document.querySelector(".winner");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissor = document.querySelector("#scissor");
+
+//* array of choices
 let userChoices = [rock, paper, scissor];
 
 //* start button
 const start = document.querySelector(".start");
 
 //* restart button
-const restart = document.querySelector(".restart-button");
+const restart = document.querySelector(".restart");
 
-//* played game shown
+//* AT THE END OF THE GAME SHOW RESULT
+const popUp = document.querySelector(".popUp");
+const playAgain = document.querySelector(".popUp button");
+const playAgainText = document.querySelector(".popUp h2");
 
 let pcChoice;
 let rounds = 1;
@@ -52,7 +57,30 @@ let pcScore = 0;
 let userScore = 0;
 //* ====== FUNCTIONS ======
 
-start.addEventListener("click", () => intro.classList.add("hidden"));
+//* STARTING THE GAME
+start.addEventListener("click", chooseRounds);
+
+//* RESTART THE GAME
+restart.addEventListener("click", () => {
+	intro.classList.remove("hidden");
+	location.reload();
+});
+
+//* PLAY AGAIN
+playAgain.addEventListener("click", () => {
+	popUp.classList.add("hidden");
+	location.reload();
+});
+
+function chooseRounds() {
+	roundSelection.forEach((e) => {
+		if (e.checked) {
+			totalRounds = e.value;
+			outputRounds.innerHTML = e.value;
+			intro.classList.add("hidden");
+		}
+	});
+}
 
 function pcChoose() {
 	pcChoice = Math.random();
@@ -68,21 +96,22 @@ function pcChoose() {
 
 userChoices.map((choice) => {
 	choice.addEventListener("click", function () {
-		userChoiceOutput.innerHTML = `<img src="./assets/img/${choice.value}.svg" width="100px" alt="rock" />`;
-		play();
-		roundSelection.forEach((e) => {
-			if (e.checked) {
-				totalRounds = e.value;
-				outputRounds.innerHTML = e.value;
-			}
-		});
 		currentRound.innerHTML = rounds;
 		if (rounds < totalRounds) {
 			rounds++;
+			play();
+			userChoiceOutput.innerHTML = `<img src="./assets/img/${choice.value}.svg" width="100px" alt="rock" />`;
 		} else {
-			rounds = 0;
-			pcScore = 0;
-			userScore = 0;
+			popUp.classList.remove("hidden");
+			if (pcScore < userScore) {
+				popUp.classList.add("won");
+				playAgainText.innerHTML = "YOU WON";
+			} else if (pcScore > userScore) {
+				popUp.classList.remove("won");
+			} else {
+				popUp.classList.add("tie");
+				playAgainText.innerHTML = "IT'S A DRAW";
+			}
 		}
 	});
 });
@@ -91,45 +120,47 @@ function play() {
 	pcChoose();
 	if (rock.checked) {
 		if (pcChoice === "paper") {
-			message.innerHTML = "PC WINS";
+			message.innerHTML = "YOU LOSE";
+			message.classList.remove("won", "tie");
 			pcScore++;
 			pc.innerHTML;
 		} else if (pcChoice === "scissor") {
 			message.innerHTML = " YOU WIN";
+			message.classList.add("won");
+			message.classList.remove("tie");
 			userScore++;
 		} else {
 			message.innerHTML = "DRAW";
+			message.classList.add("tie");
 		}
 	} else if (paper.checked) {
 		if (pcChoice === "rock") {
 			message.innerHTML = "YOU WIN";
+			message.classList.add("won");
+			message.classList.remove("tie");
 			userScore++;
 		} else if (pcChoice === "scissor") {
-			message.innerHTML = "PC WINS";
+			message.innerHTML = "YOU LOSE";
+			message.classList.remove("won", "tie");
 			pcScore++;
 		} else {
 			message.innerHTML = "DRAW";
+			message.classList.add("tie");
 		}
 	} else if (scissor.checked) {
 		if (pcChoice === "paper") {
 			message.innerHTML = "YOU WIN";
+			message.classList.add("won");
 			userScore++;
 		} else if (pcChoice === "rock") {
-			message.innerHTML = "PC WINS";
+			message.innerHTML = "YOU LOSE";
+			message.classList.remove("won", "tie");
 			pcScore++;
 		} else {
 			message.innerHTML = "DRAW";
+			message.classList.add("tie");
 		}
 	}
 	pc.innerHTML = pcScore;
 	user.innerHTML = userScore;
-}
-
-restart.addEventListener("click", restartGame);
-
-function restartGame() {
-	intro.classList.remove("hidden");
-	rounds = 0;
-	pcScore = 0;
-	userScore = 0;
 }
