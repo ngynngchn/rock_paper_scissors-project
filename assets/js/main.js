@@ -108,50 +108,49 @@ userChoices.map((choice) => {
 //* compare user choice with pc choice
 function play() {
 	pcChoose();
+	let result;
 	if (rock.checked) {
 		if (pcChoice === "paper") {
-			message.innerHTML = "YOU LOSE";
-			message.classList.remove("won", "tie");
+			result = "YOU LOSE";
 			pcScore++;
 			pc.innerHTML;
 		} else if (pcChoice === "scissor") {
-			message.innerHTML = " YOU WIN";
-			message.classList.remove("tie");
-			message.classList.add("won");
+			result = " YOU WIN";
 			userScore++;
 		} else {
-			message.innerHTML = "DRAW";
-			message.classList.add("tie");
+			result = "DRAW";
 		}
 	} else if (paper.checked) {
 		if (pcChoice === "rock") {
-			message.innerHTML = "YOU WIN";
-			message.classList.remove("tie");
-			message.classList.add("won");
+			result = "YOU WIN";
 			userScore++;
 		} else if (pcChoice === "scissor") {
-			message.innerHTML = "YOU LOSE";
-			message.classList.remove("won", "tie");
+			result = "YOU LOSE";
 			pcScore++;
 		} else {
-			message.innerHTML = "DRAW";
-			message.classList.add("tie");
+			result = "DRAW";
 		}
 	} else if (scissor.checked) {
 		if (pcChoice === "paper") {
-			message.innerHTML = "YOU WIN";
-			message.classList.add("won");
-			message.classList.remove("tie");
+			result = "YOU WIN";
 			userScore++;
 		} else if (pcChoice === "rock") {
-			message.innerHTML = "YOU LOSE";
-			message.classList.remove("won", "tie");
+			result = "YOU LOSE";
 			pcScore++;
 		} else {
-			message.innerHTML = "DRAW";
-			message.classList.add("tie");
+			result = "DRAW";
 		}
 	}
+
+	if (result == "YOU WIN") {
+		message.classList.add("won");
+	} else if (result == "DRAW") {
+		message.classList.add("tie");
+	} else {
+		message.classList.remove("won", "tie");
+	}
+
+	message.innerHTML = result;
 	pc.innerHTML = pcScore;
 	user.innerHTML = userScore;
 }
